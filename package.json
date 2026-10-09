@@ -1,0 +1,22 @@
+{
+  "name": "pii-field-encryption",
+  "version": "1.0.0",
+  "description": "Field-level encryption for personal data with searchable blind indexes (AES-256-GCM + HMAC-SHA256).",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env src/server.js",
+    "genkeys": "node scripts/genkeys.mjs",
+    "seed": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/seed.mjs",
+    "dump-db": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/dump-db.mjs",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\""
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.4",
+    "hono": "^4.13.13"
+  }
+}

@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+node_modules/
+coverage/
+*.db
+*.sqlite*
+*.log
+/output/
+_import/
+.vscode/*
+.idea/
