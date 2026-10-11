@@ -2,6 +2,10 @@
 
 Field-level encryption for personal data with searchable blind indexes: encrypt at rest, still look records up by phone or email, never store plaintext.
 
+## Where this fits in a data platform
+
+Field-level encryption plus blind indexes is the governance layer for PII *before* data reaches analytics: sensitive columns are ciphertext at rest, yet exact-match lookups (and joins on a blind index) still work, and plaintext needs an explicit admin reveal. The companion [support-analytics-warehouse](https://github.com/abdalrahmnamo-svg/support-analytics-warehouse) takes the other half of that approach: customer e-mail and phone are not part of its raw contract, so its marts carry only a pseudonymous `customer_id` and no PII columns. Analytics gets the keys it needs to join and count, never the personal data.
+
 ## Problem
 
 Encrypting a column normally breaks `WHERE phone = ?`. Storing the value in clear (or as a plain hash) to keep lookups working defeats the point. This repo shows the standard compromise: each personal field is encrypted with AES-256-GCM, and a separate keyed HMAC "blind index" allows exact-match lookup without revealing the value.
